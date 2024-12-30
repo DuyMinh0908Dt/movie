@@ -1,0 +1,44 @@
+.analytics {
+  border-radius: 16px;
+  min-height: 90vh;
+}
+
+.border_radius-16 {
+  border-radius: 16px;
+}
+
+.total_amount-container {
+  background-color: rgba(0, 167, 111, 0.2) !important;
+}
+
+.total_customers-container {
+  background-color: #00b8d933;
+}
+
+.total_orders {
+  background-color: rgba(255, 171, 0, 0.2);
+}
+
+.total_reports {
+  background-color: rgba(255, 86, 48, 0.2);
+}
+
+.css-tec1m3 {
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+  padding: 4px;
+  border-radius: 50%;
+  color: rgb(34, 197, 94);
+  background-color: rgba(34, 197, 94, 0.16);
+}
+
+.css-jc110d {
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+  padding: 4px;
+  border-radius: 50%;
+  color: rgb(255, 86, 48);
+  background-color: rgba(255, 86, 48, 0.16);
+}

@@ -1,0 +1,299 @@
+generator client {
+  provider   = "prisma-client-js"
+  engineType = "library"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model CT_Combo_ThucPham {
+  MaThucPham Int
+  MaCombo    Int
+  SoLuong    Int?
+  ThucPham   ThucPham @relation(fields: [MaThucPham], references: [MaThucPham], onDelete: Cascade, map: "CT_Combo_ThucPham_ibfk_1")
+  Combo      Combo    @relation(fields: [MaCombo], references: [MaCombo], onDelete: Cascade, map: "CT_Combo_ThucPham_ibfk_2")
+
+  @@id([MaThucPham, MaCombo])
+  @@index([MaCombo], map: "CT_Combo_ThucPham_ibfk_2")
+}
+
+model CT_HoaDon_Combo {
+  MaHoaDon String @db.Char(36)
+  MaCombo  Int
+  SoLuong  Int?
+  HoaDon   HoaDon @relation(fields: [MaHoaDon], references: [MaHoaDon], onDelete: Cascade, map: "CT_HoaDon_Combo_ibfk_1")
+  Combo    Combo  @relation(fields: [MaCombo], references: [MaCombo], onDelete: Cascade, map: "CT_HoaDon_Combo_ibfk_2")
+
+  @@id([MaHoaDon, MaCombo])
+  @@index([MaCombo], map: "CT_HoaDon_Combo_ibfk_2")
+}
+
+model CT_HoaDon_ThucPham {
+  MaThucPham Int
+  MaHoaDon   String   @db.Char(36)
+  SoLuong    Int?
+  ThucPham   ThucPham @relation(fields: [MaThucPham], references: [MaThucPham], onDelete: Cascade, map: "CT_HoaDon_ThucPham_ibfk_1")
+  HoaDon     HoaDon   @relation(fields: [MaHoaDon], references: [MaHoaDon], onDelete: Cascade, map: "CT_HoaDon_ThucPham_ibfk_2")
+
+  @@id([MaThucPham, MaHoaDon])
+  @@index([MaHoaDon], map: "CT_HoaDon_ThucPham_ibfk_2")
+}
+
+model CT_NhomQuyen_Quyen {
+  MaNhomQuyen Int
+  MaQuyen     Int
+  NhomQuyen   NhomQuyen @relation(fields: [MaNhomQuyen], references: [MaNhomQuyen], onDelete: Cascade, map: "CT_NhomQuyen_Quyen_ibfk_1")
+  Quyen       Quyen     @relation(fields: [MaQuyen], references: [MaQuyen], onDelete: Cascade, map: "CT_NhomQuyen_Quyen_ibfk_2")
+
+  @@id([MaNhomQuyen, MaQuyen])
+  @@index([MaQuyen], map: "CT_NhomQuyen_Quyen_ibfk_2")
+}
+
+model CT_Phim_TheLoai {
+  MaTheLoai Int
+  MaPhim    Int
+  Phim      Phim    @relation(fields: [MaPhim], references: [MaPhim], onDelete: Cascade, map: "phimfkzz")
+  TheLoai   TheLoai @relation(fields: [MaTheLoai], references: [MaTheLoai], onDelete: Cascade, map: "theloaif222")
+
+  @@id([MaTheLoai, MaPhim])
+  @@index([MaPhim], map: "phimfkzz")
+}
+
+model Combo {
+  MaCombo           Int                 @id @default(autoincrement())
+  GiaCombo          Int?
+  TenCombo          String?             @db.VarChar(500)
+  TrangThai         Int?
+  MoTa              String?             @db.VarChar(500)
+  HinhAnh           String?             @db.VarChar(500)
+  CT_Combo_ThucPham CT_Combo_ThucPham[]
+  CT_HoaDon_Combo   CT_HoaDon_Combo[]
+}
+
+model Ghe {
+  MaGhe        Int         @id @default(autoincrement())
+  X            Int?
+  Y            Int?
+  SoGhe        String?     @db.VarChar(500)
+  TrangThai    Int?
+  MaPhongChieu Int?
+  MaLoaiGhe    Int?
+  PhongChieu   PhongChieu? @relation(fields: [MaPhongChieu], references: [MaPhongChieu], onDelete: Cascade, map: "Ghe_ibfk_1")
+  LoaiGhe      LoaiGhe?    @relation(fields: [MaLoaiGhe], references: [MaLoaiGhe], onDelete: Cascade, map: "Ghe_ibfk_2")
+  Ve           Ve[]
+
+  @@index([MaPhongChieu], map: "Ghe_ibfk_1")
+  @@index([MaLoaiGhe], map: "Ghe_ibfk_2")
+}
+
+model HoaDon {
+  MaHoaDon            String               @id @db.Char(36)
+  TongTien            Int?
+  NgayGioThanhToan    DateTime?            @db.DateTime(0)
+  Thue                Float?               @db.Float
+  PhuongThucThanhToan String?              @db.VarChar(500)
+  MaNguoiDung         Int?
+  MaKhuyenMai         String?              @db.VarChar(100)
+  TrangThai           Int?
+  CT_HoaDon_Combo     CT_HoaDon_Combo[]
+  CT_HoaDon_ThucPham  CT_HoaDon_ThucPham[]
+  NguoiDung           NguoiDung?           @relation(fields: [MaNguoiDung], references: [MaNguoiDung], onDelete: Restrict, onUpdate: Restrict, map: "HoaDon_ibfk_1")
+  KhuyenMai           KhuyenMai?           @relation(fields: [MaKhuyenMai], references: [MaKhuyenMai], onDelete: Restrict, onUpdate: Restrict, map: "HoaDon_ibfk_2")
+  Ve                  Ve[]
+
+  @@index([MaKhuyenMai], map: "HoaDon_ibfk_2")
+  @@index([MaNguoiDung], map: "MaNguoiDung")
+}
+
+model KhuyenMai {
+  MaKhuyenMai          String    @id @db.VarChar(100)
+  TenKhuyenMai         String?   @db.VarChar(500)
+  MoTa                 String?   @db.VarChar(500)
+  NgayBatDau           DateTime? @db.Date
+  NgayKetThuc          DateTime? @db.Date
+  GiamToiDa            Int?
+  GiaTriGiam           Int?
+  GioiHanSuDung        Int?
+  GiaTriToiThieu       Int?
+  TrangThai            Int?
+  GioiHanTrenKhachHang Int?      @db.TinyInt
+  MaLoaiVe             Int?
+  DiemToiThieu         Int?      @default(0)
+  HoaDon               HoaDon[]
+}
+
+model LoaiGhe {
+  MaLoaiGhe  Int     @id @default(autoincrement())
+  TenLoaiGhe String? @db.VarChar(500)
+  MoTa       String? @db.VarChar(500)
+  GiaVe      Int?
+  TrangThai  Int?
+  Dai        Int     @default(1)
+  Rong       Int     @default(1)
+  Mau        String  @db.VarChar(8)
+  Ghe        Ghe[]
+}
+
+model LoaiVe {
+  MaLoaiVe  Int     @id @default(autoincrement())
+  TenLoaiVe String? @db.VarChar(500)
+  GiaVe     Int?
+  MoTa      String? @db.VarChar(500)
+  TrangThai Int?
+  Rong      Int?    @default(1)
+  Ve        Ve[]
+}
+
+model NguoiDung {
+  MaNguoiDung  Int        @id @default(autoincrement())
+  TenNguoiDung String?    @db.VarChar(500)
+  SoDienThoai  String?    @db.VarChar(500)
+  Email        String?    @db.VarChar(500)
+  DiaChi       String?    @db.VarChar(500)
+  TrangThai    Int?
+  NgaySinh     DateTime?  @db.Date
+  DiemTichLuy  Int?
+  HoaDon       HoaDon[]
+  TaiKhoan     TaiKhoan[]
+}
+
+model NhomQuyen {
+  MaNhomQuyen        Int                  @id @default(autoincrement())
+  TenNhomQuyen       String?              @db.VarChar(500)
+  TrangThai          Int?
+  MoTa               String?              @db.VarChar(500)
+  CT_NhomQuyen_Quyen CT_NhomQuyen_Quyen[]
+  TaiKhoan           TaiKhoan[]
+}
+
+model Phim {
+  MaPhim          Int               @id @default(autoincrement())
+  TenPhim         String?           @db.VarChar(500)
+  NgayPhatHanh    DateTime?         @db.Date
+  HanCheDoTuoi    String?           @db.VarChar(500)
+  HinhAnh         String?           @db.VarChar(500)
+  ThoiLuong       Int?
+  NgonNgu         String?           @db.VarChar(500)
+  MoTa            String?           @db.VarChar(500)
+  DaoDien         String?           @db.VarChar(500)
+  TrangThai       Int?
+  DinhDang        String?           @db.VarChar(100)
+  Trailer         String?           @db.VarChar(255)
+  CT_Phim_TheLoai CT_Phim_TheLoai[]
+  SuatChieu       SuatChieu[]
+}
+
+model PhongChieu {
+  MaPhongChieu  Int         @id @default(autoincrement())
+  TenPhongChieu String?     @db.VarChar(500)
+  SoGhe         Int?
+  ManHinh       String?     @db.VarChar(500)
+  ChieuRong     Int?
+  ChieuDai      Int?
+  MaRapChieu    Int?
+  TrangThai     Int?
+  Ghe           Ghe[]
+  RapChieu      RapChieu?   @relation(fields: [MaRapChieu], references: [MaRapChieu], onDelete: Restrict, onUpdate: Restrict, map: "PhongChieu_ibfk_1")
+  SuatChieu     SuatChieu[]
+
+  @@index([MaRapChieu], map: "MaRapChieu")
+}
+
+model Quyen {
+  MaQuyen            Int                  @id @default(autoincrement())
+  TenQuyen           String?              @db.VarChar(500)
+  TrangThai          Int?
+  MoTa               String?              @db.VarChar(500)
+  CT_NhomQuyen_Quyen CT_NhomQuyen_Quyen[]
+}
+
+model RapChieu {
+  MaRapChieu  Int          @id @default(autoincrement())
+  TenRapChieu String?      @db.VarChar(500)
+  DiaChi      String?      @db.VarChar(500)
+  HinhAnh     String?      @db.VarChar(500)
+  TrangThai   Int?
+  MoTa        String?      @db.VarChar(500)
+  PhongChieu  PhongChieu[]
+}
+
+model SuatChieu {
+  MaXuatChieu    Int         @id @default(autoincrement())
+  NgayGioChieu   DateTime?   @db.DateTime(0)
+  NgayGioKetThuc DateTime?   @db.DateTime(0)
+  GiaVe          Int?
+  MaPhim         Int?
+  MaPhongChieu   Int?
+  TrangThai      Int?
+  Phim           Phim?       @relation(fields: [MaPhim], references: [MaPhim], onDelete: Restrict, onUpdate: Restrict, map: "SuatChieu_ibfk_1")
+  PhongChieu     PhongChieu? @relation(fields: [MaPhongChieu], references: [MaPhongChieu], onDelete: Restrict, onUpdate: Restrict, map: "SuatChieu_ibfk_2")
+  Ve             Ve[]
+
+  @@index([MaPhim], map: "MaPhim")
+  @@index([MaPhongChieu], map: "MaPhongChieu")
+}
+
+model TaiKhoan {
+  MaTaiKhoan   Int        @id @default(autoincrement())
+  TenDangNhap  String?    @db.VarChar(500)
+  MatKhau      String?    @db.VarChar(500)
+  TrangThai    Int?
+  LoaiTaiKhoan Int?
+  MaNguoiDung  Int?
+  MaNhomQuyen  Int?
+  NguoiDung    NguoiDung? @relation(fields: [MaNguoiDung], references: [MaNguoiDung], onDelete: Cascade, map: "TaiKhoan_ibfk_1")
+  NhomQuyen    NhomQuyen? @relation(fields: [MaNhomQuyen], references: [MaNhomQuyen], map: "TaiKhoan_ibfk_2")
+
+  @@index([MaNguoiDung], map: "TaiKhoan_ibfk_1")
+  @@index([MaNhomQuyen], map: "TaiKhoan_ibfk_2")
+}
+
+model TheLoai {
+  MaTheLoai       Int               @id @default(autoincrement())
+  TenTheLoai      String?           @db.VarChar(500)
+  TrangThai       Int?
+  CT_Phim_TheLoai CT_Phim_TheLoai[]
+}
+
+model ThucPham {
+  MaThucPham         Int                  @id @default(autoincrement())
+  TenThucPham        String?              @db.VarChar(500)
+  LoaiThucPham       String?              @db.VarChar(500)
+  GiaThucPham        Int?
+  MoTa               String?              @db.VarChar(500)
+  TrangThai          Int?
+  HinhAnh            String?              @db.VarChar(500)
+  CT_Combo_ThucPham  CT_Combo_ThucPham[]
+  CT_HoaDon_ThucPham CT_HoaDon_ThucPham[]
+}
+
+model TrangThai {
+  MaTrangThai   Int    @default(autoincrement())
+  Ten           String @db.VarChar(255)
+  MoTa          String @db.VarChar(255)
+  ApDungChoBang String @db.VarChar(255)
+
+  @@id([MaTrangThai, MoTa])
+}
+
+model Ve {
+  MaVe        Int       @id @default(autoincrement())
+  GiaVe       Int?
+  TrangThai   Int?
+  KhoaDen     DateTime? @db.Timestamp(0)
+  MaLoaiVe    Int?
+  MaGhe       Int?
+  MaHoaDon    String?   @db.Char(36)
+  MaSuatChieu Int
+  LoaiVe      LoaiVe?   @relation(fields: [MaLoaiVe], references: [MaLoaiVe], onDelete: Restrict, onUpdate: Restrict, map: "Ve_ibfk_1")
+  Ghe         Ghe?      @relation(fields: [MaGhe], references: [MaGhe], onDelete: Cascade, map: "Ve_ibfk_2")
+  HoaDon      HoaDon?   @relation(fields: [MaHoaDon], references: [MaHoaDon], onUpdate: SetNull, map: "Ve_ibfk_3")
+  SuatChieu   SuatChieu @relation(fields: [MaSuatChieu], references: [MaXuatChieu], onDelete: Cascade, map: "Ve_ibfk_4")
+
+  @@index([MaLoaiVe], map: "MaLoaiVe")
+  @@index([MaGhe], map: "Ve_ibfk_2")
+  @@index([MaHoaDon], map: "Ve_ibfk_3")
+  @@index([MaSuatChieu], map: "Ve_ibfk_4")
+}

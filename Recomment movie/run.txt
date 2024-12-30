@@ -1,0 +1,17 @@
+cài đặt python 3.10
+- Chạy : py -m venv venv : ở temirnal để tạo môi trường
+- Chạy tiếp : .\venv\Scripts\activate : để vào môi trường mới tạo
+- Tiếp tục chạy : pip install -r requirements.txt : để cài thư viện
+- Gõ : cd app : ở temirnal 
+- Gõ : uvicorn main:app --reload : chạy chương trình
+* Chạy : py offline.py : chạy ngầm và update thêm npy
+
+
+
+
+
+Mở trình duyệt và truy cập vào:
+Swagger UI: http://127.0.0.1:8000/docs
+Redoc: http://127.0.0.1:8000/redoc
+Đây là tài liệu tự động được tạo dựa trên OpenAPI schema của FastAPI.
+

@@ -1,0 +1,21 @@
+.border_radius-16 {
+    border-radius: 16px;
+}
+
+.analytics-products {
+    width: 100%;
+    height: 100%;
+}
+
+/* css của thống kê theo bảng */
+.table_container {}
+
+.table_container::-webkit-scrollbar {
+    display: none;
+}
+
+.table-header {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}

@@ -1,0 +1,16 @@
+
+/admin/phong-chieu
+
+/admin/phim
+
+/admin/nhom-quyen
+
+/admin/loai-ve
+/admin/hoa-don
+
+/admin/tai-khoan
+admin/tai-khoan/them
+admin/suat-chieu
+admin/suat-chieu/them
+admin/suat-chieu/{id}/sua
+admin/suat-chieu/{id}/can-edit

@@ -1,0 +1,14 @@
+yarn.lock
+node_modules
+config.php
+./config.php
+controllers.cache.php
+.env
+php_dir
+vendor
+*.log
+composer.lock
+package-lock.json
+
+./mysql
+mysql

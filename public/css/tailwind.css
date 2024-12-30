@@ -1,0 +1,35 @@
+@tailwind base;
+
+@tailwind components;
+@tailwind utilities;
+
+* {
+  font-family: "Inter", sans-serif;
+}
+.error_message {
+  @apply tw-text-red-500 tw-text-sm tw-italic;
+}
+
+.col-name {
+  @apply tw-flex tw-items-center tw-gap-x-2;
+}
+
+.dropdown-item {
+  @apply !tw-flex tw-items-center tw-gap-x-2 tw-cursor-pointer;
+}
+[x-cloak] {
+  display: none;
+}
+.dropdown-item.selected {
+  @apply tw-bg-blue-200;
+}
+
+.dropdown-item .text {
+  @apply tw-whitespace-normal;
+}
+.dropdown-menu .show {
+  @apply tw-max-w-full;
+}
+th > div {
+  @apply tw-flex tw-items-center;
+}

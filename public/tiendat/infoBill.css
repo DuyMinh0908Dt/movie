@@ -1,0 +1,34 @@
+.detail-bill-container {
+    min-height: 90vh;
+}
+
+.ticket-container {
+    background-color: white !important;
+    border-radius: 16px;
+    min-height: 45vh;
+    flex-direction: column;
+    margin-bottom: 1rem;
+}
+
+.prucduct-container { 
+    background-color: white !important;
+    border-radius: 16px;
+    min-height: 45vh;
+    flex-direction: column;
+    /* margin-bottom: 1rem; */
+}
+
+.total-container {
+    background-color: white !important;
+    border-radius: 16px;
+    min-height: 5vh;
+    flex-direction: column;
+}
+
+.customer-info-container {
+    background-color: white !important;
+    border-radius: 16px;
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+}

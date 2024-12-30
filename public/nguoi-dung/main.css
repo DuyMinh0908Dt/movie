@@ -1,0 +1,77 @@
+.acc-page {
+    background-color: rgb(4, 81, 116);
+}
+
+.acc-sidebar {
+    background-color: rgb(248, 235, 215);
+}
+
+.bock-bar {
+    background: #64748b;
+    border: none;
+    border-radius: 1.4rem;
+    height: .7rem;
+    overflow: hidden;
+    width: 100%;
+}
+
+.bock-bar .curr-bar {
+    background: linear-gradient(90deg, #ff296e 3.69%, #fbc821 75.91%);
+    height: 100%;
+}
+
+.acc-sidebar__items {
+    cursor: pointer;
+}
+
+.acc-sidebar__items a {
+    text-decoration: none;
+    color: rgb(44, 62, 80);
+}
+
+.acc-sidebar__items .active {
+    color: rgba(228, 140, 68, 1);
+}
+
+.acc-sidebar__items .active svg {
+    stroke: rgba(228, 140, 68, 1);
+}
+
+.acc-logout {}
+
+.acc-logout:hover a {
+    color: rgba(228, 140, 68, 1);
+}
+
+.acc-logout:hover a svg {
+    stroke: rgba(228, 140, 68, 1);
+}
+
+.acc-logout .logout {
+    text-decoration: none;
+    color: #64748b;
+}
+
+.acc-logout .logout svg {
+    stroke: #64748b;
+}
+
+/* trang thông tin tài người dùng */
+.info-cus {}
+
+.name {
+    font-size: 2vw;
+}
+
+.submit-btn {
+    background: linear-gradient(to right, #00226f, #011d5e, #040813) !important;
+    color: rgba(228, 140, 68, 1) !important;
+}
+
+/* trang tài khoản thành */
+.point-current {
+    -webkit-text-fill-color: transparent;
+    background: linear-gradient(90deg, #ff296e 3.69%, #fbc821 75.91%);
+    background-clip: text;
+    -webkit-background-clip: text;
+}

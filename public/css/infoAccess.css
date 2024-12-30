@@ -1,0 +1,7 @@
+.info-access {
+    background-color: white !important;
+    border-radius: 16px;
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+}

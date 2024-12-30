@@ -1,0 +1,44 @@
+.showtime {
+    background-color: white !important;
+    border-radius: 16px;
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.button {
+    border-radius: 0;
+    color: rgb(99, 115, 129);
+}
+
+.button:hover {
+    color: rgb(99, 115, 129);
+}
+
+.button:active {
+    border-color: white !important;
+}
+
+.button-nav-active {
+    border-bottom: solid black;
+    color: black;
+}
+
+.button-nav-active:hover {
+    border-bottom: solid black;
+    color: black;
+}
+
+.col-name {
+    cursor: pointer;
+}
+
+.btn-icon {
+    background-color: transparent;
+    border-color: transparent;
+}
+
+.btn-icon:hover {
+    cursor: pointer;
+}
+

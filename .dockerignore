@@ -1,0 +1,12 @@
+yarn.lock
+node_modules
+controllers.cache.php
+.env
+php_dir
+vendor
+ssl
+mysql
+.idea
+.vscode
+tailwind.config.js
+postcss.config.js

@@ -1,0 +1,50 @@
+{
+  "name": "movie-ticket",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@alpinejs/focus": "^3.13.8",
+    "@ericblade/quagga2": "^1.8.4",
+    "@fortawesome/fontawesome-free": "^6.5.1",
+    "@material-tailwind/html": "^2.2.2",
+    "@popperjs/core": "^2.11.8",
+    "@types/bootstrap-select": "^1.13.7",
+    "alpinejs": "^3.13.8",
+    "apexcharts": "^3.49.0",
+    "axios": "^1.6.8",
+    "axios-cache-interceptor": "^1.5.2",
+    "bootstrap": "^5.3.3",
+    "bootstrap-select": "^1.14.0-beta3",
+    "dayjs": "^1.11.10",
+    "esbuild-style-plugin": "^1.0.8",
+    "got": "^14.2.1",
+    "html2canvas-pro": "^1.4.3",
+    "jquery": "^3.7.1",
+    "lodash": "^4.17.21",
+    "npm-run-all": "^4.1.5",
+    "quagga": "^0.12.1",
+    "query-string": "^9.0.0",
+    "watcher": "^2.3.1"
+  },
+  "devDependencies": {
+    "@types/alpinejs__focus": "^3.13.4",
+    "@types/node": "^20.11.25",
+    "autoprefixer": "^10.4.18",
+    "daisyui": "^4.9.0",
+    "esbuild": "0.20.2",
+    "esbuild-plugin-tailwindcss": "^1.2.0",
+    "nodemon": "^3.1.0",
+    "postcss": "^8.4.35",
+    "tailwindcss": "^3.4.1"
+  },
+  "scripts": {
+    "watch:css": "npx tailwindcss -i public/css/tailwind.css -o public/css/styles.css --watch",
+    "watch:all": "npm-run-all --parallel watch:css watch:js",
+    "watch:js": "nodemon esbuild.js --watch public/rawjs",
+    "build:css": "npx tailwindcss -i public/css/tailwind.css -o public/css/styles.css",
+    "build:js": "node esbuild.js",
+    "build": "npm-run-all --parallel build:css build:js"
+  },
+  "type": "module"
+}
